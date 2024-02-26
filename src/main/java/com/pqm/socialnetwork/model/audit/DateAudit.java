@@ -27,7 +27,7 @@ import java.util.Objects;
         allowGetters = true
 )
 public abstract class DateAudit implements Serializable {
-    private static final long serialVersionUid = 1L;
+    private static final long serialVersionUID = 1L;
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
