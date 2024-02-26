@@ -5,16 +5,17 @@ import com.pqm.socialnetwork.repository.UserRepository;
 import com.pqm.socialnetwork.security.UserPrincipal;
 import com.pqm.socialnetwork.service.ApplicationUserDetailsService;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ApplicationUserDetailsServiceImpl implements ApplicationUserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     @Transactional

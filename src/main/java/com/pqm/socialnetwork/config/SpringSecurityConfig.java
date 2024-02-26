@@ -20,17 +20,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SpringSecurityConfig {
 
     private final ApplicationUserDetailsService applicationUserDetailsService;
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    public SpringSecurityConfig(ApplicationUserDetailsService applicationUserDetailsService,
-                                JwtAuthenticationFilter jwtAuthenticationFilter) {
-        this.applicationUserDetailsService = applicationUserDetailsService;
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-    }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
@@ -56,6 +52,7 @@ public class SpringSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/api/v1/demo-controller").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
